@@ -15,7 +15,9 @@ const PRIZES = [
     { value: 99000, label: '99K', color: '#DDA0DD' },
     { value: 111000, label: '111K', color: '#FFD700' },
     { value: 138000, label: '138K', color: '#FF8A65' },
-    { value: 168000, label: '168K', color: '#E91E63' }
+    { value: 168000, label: '168K', color: '#E91E63' },
+    { value: 186000, label: '186K', color: '#9C27B0' },
+    { value: 196000, label: '196K', color: '#00BCD4' }
 ];
 
 const STORAGE_KEY = 'lixi2026_links';
