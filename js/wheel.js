@@ -251,11 +251,6 @@ function showResult(prize) {
     document.getElementById('receiverResult').textContent = window.linkData?.receiver || 'Bạn';
     document.getElementById('senderResult').textContent = window.linkData?.sender || 'Người gửi';
     
-    // Only show "Send to friends" button in demo mode
-    if (window.isDemoMode) {
-        document.getElementById('resultActions').style.display = 'block';
-    }
-    
     // Hide wheel, show result
     wheelScreen.style.display = 'none';
     resultScreen.style.display = 'block';
