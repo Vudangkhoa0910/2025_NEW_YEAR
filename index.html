@@ -9,6 +9,33 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card glass-card">
+            <div class="login-header">
+                <div class="login-icon">🔐</div>
+                <h2>Admin Access</h2>
+                <p>Nhập mật khẩu để tiếp tục</p>
+            </div>
+            <div class="login-form">
+                <div class="input-group">
+                    <label for="adminPassword">🔑 Mật khẩu</label>
+                    <input type="password" id="adminPassword" placeholder="Nhập mật khẩu..." onkeypress="if(event.key==='Enter')checkPassword()">
+                </div>
+                <button class="btn btn-primary btn-glow" onclick="checkPassword()">
+                    <span class="btn-icon">🚀</span>
+                    <span class="btn-text">Đăng Nhập</span>
+                </button>
+                <p class="login-error" id="loginError" style="display: none;">❌ Sai mật khẩu!</p>
+            </div>
+            <div class="author-credit">
+                <p>© 2026 by <strong>Vu Dang Khoa</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Admin Content (Hidden by default) -->
+    <div id="adminContent" style="display: none;">
     <!-- Floating Elements -->
     <div class="floating-elements">
         <div class="lantern lantern-1">🏮</div>
@@ -121,12 +148,43 @@
             <p class="author-credit">© 2026 by <strong>Vu Dang Khoa</strong></p>
         </footer>
     </div>
+    </div> <!-- End adminContent -->
 
     <!-- Toast Notification -->
     <div class="toast" id="toast">
         <span class="toast-icon">✅</span>
         <span class="toast-message">Đã sao chép link!</span>
     </div>
+
+    <script>
+    // Admin password check
+    const ADMIN_PASS = 'Khoa09102004';
+    const ADMIN_KEY = 'lixi2026_admin';
+    
+    function checkPassword() {
+        const input = document.getElementById('adminPassword').value;
+        const error = document.getElementById('loginError');
+        
+        if (input === ADMIN_PASS) {
+            sessionStorage.setItem(ADMIN_KEY, 'true');
+            showAdminContent();
+        } else {
+            error.style.display = 'block';
+            document.getElementById('adminPassword').value = '';
+            setTimeout(() => { error.style.display = 'none'; }, 2000);
+        }
+    }
+    
+    function showAdminContent() {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('adminContent').style.display = 'block';
+    }
+    
+    // Check if already logged in this session
+    if (sessionStorage.getItem(ADMIN_KEY) === 'true') {
+        showAdminContent();
+    }
+    </script>
 
     <script src="js/particles.js"></script>
     <script src="js/app.js"></script>
