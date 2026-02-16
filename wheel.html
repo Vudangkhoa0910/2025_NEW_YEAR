@@ -111,6 +111,55 @@
                     </p>
                 </div>
 
+                <!-- QR Upload Form -->
+                <div class="qr-upload-section" id="qrUploadSection">
+                    <div class="upload-header">
+                        <h3>📱 Nhận Tiền Qua Chuyển Khoản</h3>
+                        <p>Upload QR Code ngân hàng của bạn để nhận lì xì</p>
+                    </div>
+                    
+                    <div class="upload-form">
+                        <div class="input-group">
+                            <label for="bankName">🏦 Tên ngân hàng</label>
+                            <input type="text" id="bankName" placeholder="VD: Vietcombank, MB Bank...">
+                        </div>
+                        <div class="input-group">
+                            <label for="accountName">👤 Tên chủ tài khoản</label>
+                            <input type="text" id="accountName" placeholder="Nhập tên chủ tài khoản...">
+                        </div>
+                        <div class="input-group">
+                            <label for="accountNumber">💳 Số tài khoản</label>
+                            <input type="text" id="accountNumber" placeholder="Nhập số tài khoản...">
+                        </div>
+                        
+                        <div class="qr-upload-box" id="qrUploadBox">
+                            <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
+                            <div class="upload-placeholder" id="uploadPlaceholder">
+                                <span class="upload-icon">📷</span>
+                                <p>Nhấn để upload QR Code</p>
+                                <p class="upload-hint">hoặc kéo thả ảnh vào đây</p>
+                            </div>
+                            <div class="upload-preview" id="uploadPreview" style="display: none;">
+                                <img id="qrPreviewImg" src="" alt="QR Preview">
+                                <button class="btn-remove-qr" onclick="removeQR()">✕</button>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-glow" id="submitQR" onclick="submitBankInfo()">
+                            <span class="btn-icon">✅</span>
+                            <span class="btn-text">Gửi Thông Tin Nhận Tiền</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Success Message (shown after submit) -->
+                <div class="submit-success" id="submitSuccess" style="display: none;">
+                    <div class="success-icon">✅</div>
+                    <h3>Đã Gửi Thành Công!</h3>
+                    <p>Thông tin của bạn đã được ghi nhận.</p>
+                    <p>Lì xì sẽ được chuyển trong thời gian sớm nhất! 🎉</p>
+                </div>
+
                 <div class="result-wishes">
                     <p>🎆 Chúc Mừng Năm Mới 2026 🎆</p>
                     <p>Năm Bính Ngọ - An Khang Thịnh Vượng 🐴</p>

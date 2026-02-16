@@ -2,6 +2,9 @@
    WHEEL SPIN LOGIC
    ============================================ */
 
+// API Base URL
+const API_BASE = '/.netlify/functions/api';
+
 // Prize segments
 const PRIZES = [
     { value: 22000, label: '22K', color: '#FF6B6B' },
@@ -14,6 +17,10 @@ const PRIZES = [
 ];
 
 const STORAGE_KEY = 'lixi2026_links';
+
+// Store current prize globally
+window.currentPrize = null;
+window.qrBase64 = null;
 
 // Decode data from URL
 function decodeData(encoded) {
@@ -36,20 +43,44 @@ function getStoredLinks() {
     }
 }
 
-// Mark link as used
-function markLinkAsUsed(id) {
+// Mark link as used (both locally and on server)
+async function markLinkAsUsed(id) {
+    // Local storage
     const links = getStoredLinks();
     if (links[id]) {
         links[id].used = true;
         links[id].usedAt = Date.now();
         localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
     }
+    
+    // Server
+    try {
+        await fetch(`${API_BASE}/mark-used`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ linkId: id })
+        });
+    } catch (e) {
+        console.log('Could not mark as used on server');
+    }
 }
 
 // Check if link is used
-function isLinkUsed(id) {
+async function isLinkUsed(id) {
+    // Check local first
     const links = getStoredLinks();
-    return links[id]?.used === true;
+    if (links[id]?.used === true) {
+        return true;
+    }
+    
+    // Check server
+    try {
+        const response = await fetch(`${API_BASE}/check-used/${encodeURIComponent(id)}`);
+        const data = await response.json();
+        return data.used === true;
+    } catch (e) {
+        return false;
+    }
 }
 
 // Wheel class
@@ -245,11 +276,23 @@ function showResult(prize) {
     const wheelScreen = document.getElementById('wheelScreen');
     const resultScreen = document.getElementById('resultScreen');
     
+    // Store prize globally for later use
+    window.currentPrize = prize;
+    
     // Update result content
     document.getElementById('prizeAmount').textContent = prize.label;
     document.getElementById('prizeValue').textContent = prize.value.toLocaleString('vi-VN');
     document.getElementById('receiverResult').textContent = window.linkData?.receiver || 'Bạn';
     document.getElementById('senderResult').textContent = window.linkData?.sender || 'Người gửi';
+    
+    // Show/hide QR upload section based on demo mode
+    const qrSection = document.getElementById('qrUploadSection');
+    if (qrSection) {
+        qrSection.style.display = window.isDemoMode ? 'none' : 'block';
+    }
+    
+    // Setup QR upload handlers
+    setupQRUpload();
     
     // Hide wheel, show result
     wheelScreen.style.display = 'none';
@@ -317,8 +360,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Store link data globally
     window.linkData = linkData;
     
-    // Check if link is already used
-    if (isLinkUsed(linkData.id)) {
+    // Check if link is already used (async)
+    checkAndShowScreen(linkData);
+});
+
+// Async check and show appropriate screen
+async function checkAndShowScreen(linkData) {
+    const used = await isLinkUsed(linkData.id);
+    
+    if (used) {
         showScreen('usedScreen');
         return;
     }
@@ -335,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     showScreen('welcomeScreen');
     setupEnvelopeButton();
-});
+}
 
 // Setup envelope button
 function setupEnvelopeButton() {
@@ -362,6 +412,129 @@ function showScreen(screenId) {
     });
     document.getElementById(screenId).style.display = 'block';
 }
+
+// Setup QR Upload handlers
+function setupQRUpload() {
+    const uploadBox = document.getElementById('qrUploadBox');
+    const fileInput = document.getElementById('qrFileInput');
+    
+    if (!uploadBox || !fileInput) return;
+    
+    // Click to upload
+    uploadBox.addEventListener('click', () => {
+        fileInput.click();
+    });
+    
+    // File selected
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+            handleFileUpload(e.target.files[0]);
+        }
+    });
+    
+    // Drag and drop
+    uploadBox.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadBox.classList.add('dragover');
+    });
+    
+    uploadBox.addEventListener('dragleave', () => {
+        uploadBox.classList.remove('dragover');
+    });
+    
+    uploadBox.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadBox.classList.remove('dragover');
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            handleFileUpload(e.dataTransfer.files[0]);
+        }
+    });
+}
+
+// Handle file upload
+function handleFileUpload(file) {
+    if (!file.type.startsWith('image/')) {
+        alert('Vui lòng chọn file ảnh!');
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        window.qrBase64 = e.target.result;
+        
+        // Show preview
+        document.getElementById('uploadPlaceholder').style.display = 'none';
+        document.getElementById('uploadPreview').style.display = 'block';
+        document.getElementById('qrPreviewImg').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+// Remove QR
+function removeQR() {
+    window.qrBase64 = null;
+    document.getElementById('uploadPlaceholder').style.display = 'block';
+    document.getElementById('uploadPreview').style.display = 'none';
+    document.getElementById('qrFileInput').value = '';
+}
+
+// Submit bank info
+async function submitBankInfo() {
+    const bankName = document.getElementById('bankName').value.trim();
+    const accountName = document.getElementById('accountName').value.trim();
+    const accountNumber = document.getElementById('accountNumber').value.trim();
+    
+    if (!bankName || !accountName || !accountNumber) {
+        alert('Vui lòng điền đầy đủ thông tin ngân hàng!');
+        return;
+    }
+    
+    const submitBtn = document.getElementById('submitQR');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Đang gửi...</span>';
+    
+    try {
+        const response = await fetch(`${API_BASE}/save-result`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                linkId: window.linkData?.id,
+                sender: window.linkData?.sender,
+                receiver: window.linkData?.receiver,
+                prize: window.currentPrize?.label,
+                prizeValue: window.currentPrize?.value,
+                qrCode: window.qrBase64 || null,
+                bankInfo: {
+                    bankName: bankName,
+                    accountName: accountName,
+                    accountNumber: accountNumber
+                }
+            })
+        });
+        
+        if (response.ok) {
+            // Show success
+            document.getElementById('qrUploadSection').style.display = 'none';
+            document.getElementById('submitSuccess').style.display = 'block';
+            
+            // More confetti!
+            if (window.confetti) {
+                window.confetti.celebrate();
+            }
+        } else {
+            throw new Error('Server error');
+        }
+    } catch (error) {
+        console.error('Submit error:', error);
+        alert('Có lỗi xảy ra! Vui lòng thử lại.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="btn-icon">✅</span><span class="btn-text">Gửi Thông Tin Nhận Tiền</span>';
+    }
+}
+
+// Make functions global
+window.removeQR = removeQR;
+window.submitBankInfo = submitBankInfo;
 
 // Add envelope open animation
 const envelopeStyle = document.createElement('style');

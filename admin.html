@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Admin - Quản Lý Lì Xì 2026</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary-red: #d32f2f;
+            --dark-red: #b71c1c;
+            --gold: #ffd700;
+            --gold-dark: #daa520;
+            --bg-dark: #1a0000;
+            --text-light: #fff5e1;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0000 0%, #3d0000 50%, #6b0000 100%);
+            color: var(--text-light);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        h1 {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px 40px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .results-table {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+        
+        .table-header {
+            display: grid;
+            grid-template-columns: 60px 150px 150px 100px 1fr 150px 120px;
+            padding: 15px 20px;
+            background: rgba(255, 215, 0, 0.1);
+            font-weight: 600;
+            color: var(--gold);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: 60px 150px 150px 100px 1fr 150px 120px;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: center;
+        }
+        
+        .table-row:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+        
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .status-pending {
+            background: #ffc107;
+            color: #000;
+        }
+        
+        .status-paid {
+            background: #4caf50;
+            color: #fff;
+        }
+        
+        .status-rejected {
+            background: #f44336;
+            color: #fff;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-pay {
+            background: #4caf50;
+            color: white;
+            margin-right: 5px;
+        }
+        
+        .btn-reject {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .qr-preview {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .qr-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .qr-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+        }
+        
+        .qr-modal.show {
+            display: flex;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .empty-state .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .refresh-btn {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--dark-red);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .bank-info {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        
+        .bank-info strong {
+            color: var(--gold);
+        }
+        
+        @media (max-width: 1000px) {
+            .table-header, .table-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .table-header span:nth-child(n+2),
+            .table-row > *:first-child::before {
+                content: attr(data-label);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 Admin Panel - Quản Lý Lì Xì 2026</h1>
+            <p>Xem và quản lý các yêu cầu nhận lì xì</p>
+        </header>
+        
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalCount">-</div>
+                <div class="stat-label">Tổng yêu cầu</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="pendingCount">-</div>
+                <div class="stat-label">Chờ xử lý</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="paidCount">-</div>
+                <div class="stat-label">Đã chuyển</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalAmount">-</div>
+                <div class="stat-label">Tổng tiền (VNĐ)</div>
+            </div>
+        </div>
+        
+        <button class="refresh-btn" onclick="loadResults()">🔄 Tải lại dữ liệu</button>
+        
+        <div class="results-table">
+            <div class="table-header">
+                <span>#</span>
+                <span>Người gửi</span>
+                <span>Người nhận</span>
+                <span>Số tiền</span>
+                <span>Thông tin ngân hàng</span>
+                <span>QR Code</span>
+                <span>Trạng thái</span>
+            </div>
+            <div id="resultsBody">
+                <div class="loading">⏳ Đang tải...</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- QR Modal -->
+    <div class="qr-modal" id="qrModal" onclick="closeModal()">
+        <img id="modalQrImg" src="" alt="QR Code">
+    </div>
+    
+    <script>
+        const API_BASE = '/.netlify/functions/api';
+        let resultsData = [];
+        
+        async function loadResults() {
+            const body = document.getElementById('resultsBody');
+            body.innerHTML = '<div class="loading">⏳ Đang tải...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/results`);
+                resultsData = await response.json();
+                
+                renderResults();
+                updateStats();
+            } catch (error) {
+                console.error('Error:', error);
+                body.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">❌</div>
+                        <p>Lỗi kết nối. Vui lòng thử lại!</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function renderResults() {
+            const body = document.getElementById('resultsBody');
+            
+            if (resultsData.length === 0) {
+                body.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">📭</div>
+                        <p>Chưa có yêu cầu nào</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            body.innerHTML = resultsData.map((item, index) => `
+                <div class="table-row" data-id="${item._id}">
+                    <span>${index + 1}</span>
+                    <span>${item.sender || 'N/A'}</span>
+                    <span>${item.receiver || 'N/A'}</span>
+                    <span style="color: var(--gold); font-weight: 600;">${item.prize || 'N/A'}</span>
+                    <span class="bank-info">
+                        ${item.bankInfo ? `
+                            <strong>${item.bankInfo.bankName}</strong><br>
+                            ${item.bankInfo.accountName}<br>
+                            ${item.bankInfo.accountNumber}
+                        ` : 'Chưa có'}
+                    </span>
+                    <span>
+                        ${item.qrCodeBase64 ? `
+                            <img class="qr-preview" src="${item.qrCodeBase64}" onclick="showQR('${item.qrCodeBase64}')" alt="QR">
+                        ` : 'Không có'}
+                    </span>
+                    <span>
+                        ${item.status === 'pending' ? `
+                            <button class="btn btn-pay" onclick="updateStatus('${item._id}', 'paid')">✅ Đã chuyển</button>
+                            <button class="btn btn-reject" onclick="updateStatus('${item._id}', 'rejected')">❌</button>
+                        ` : `
+                            <span class="status-badge status-${item.status}">${
+                                item.status === 'paid' ? '✅ Đã chuyển' : '❌ Từ chối'
+                            }</span>
+                        `}
+                    </span>
+                </div>
+            `).join('');
+        }
+        
+        function updateStats() {
+            const total = resultsData.length;
+            const pending = resultsData.filter(r => r.status === 'pending').length;
+            const paid = resultsData.filter(r => r.status === 'paid').length;
+            const totalAmount = resultsData
+                .filter(r => r.status === 'paid')
+                .reduce((sum, r) => sum + (r.prizeValue || 0), 0);
+            
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('paidCount').textContent = paid;
+            document.getElementById('totalAmount').textContent = totalAmount.toLocaleString('vi-VN');
+        }
+        
+        async function updateStatus(id, status) {
+            if (!confirm(`Xác nhận ${status === 'paid' ? 'đã chuyển tiền' : 'từ chối'}?`)) return;
+            
+            try {
+                await fetch(`${API_BASE}/update-status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, status })
+                });
+                
+                loadResults();
+            } catch (error) {
+                alert('Lỗi! Vui lòng thử lại.');
+            }
+        }
+        
+        function showQR(src) {
+            document.getElementById('modalQrImg').src = src;
+            document.getElementById('qrModal').classList.add('show');
+        }
+        
+        function closeModal() {
+            document.getElementById('qrModal').classList.remove('show');
+        }
+        
+        // Load on start
+        loadResults();
+    </script>
+</body>
+</html>

@@ -463,6 +463,178 @@
     font-weight: 700;
 }
 
+/* QR Upload Section */
+.qr-upload-section {
+    margin: 25px 0;
+    padding: 25px;
+    background: rgba(255, 215, 0, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.upload-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.upload-header h3 {
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.upload-header p {
+    color: var(--text-gold);
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.upload-form .input-group input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 12px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    color: var(--text-light);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.upload-form .input-group input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.upload-form .input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.upload-form .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--gold-light);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.qr-upload-box {
+    border: 2px dashed rgba(255, 215, 0, 0.4);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-upload-box:hover {
+    border-color: var(--gold);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.qr-upload-box.dragover {
+    border-color: var(--gold);
+    background: rgba(255, 215, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.upload-placeholder {
+    color: var(--text-gold);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.upload-placeholder p {
+    margin: 5px 0;
+}
+
+.upload-hint {
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+.upload-preview {
+    position: relative;
+    width: 100%;
+}
+
+.upload-preview img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-remove-qr {
+    position: absolute;
+    top: -10px;
+    right: calc(50% - 110px);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ff4444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-remove-qr:hover {
+    background: #ff0000;
+    transform: scale(1.1);
+}
+
+/* Submit Success */
+.submit-success {
+    text-align: center;
+    padding: 30px;
+    background: rgba(0, 200, 0, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    margin: 25px 0;
+}
+
+.submit-success .success-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.submit-success h3 {
+    color: #90EE90;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.submit-success p {
+    color: var(--text-gold);
+    margin: 5px 0;
+}
+
 /* Used & Invalid Screens */
 .used-card, .invalid-card {
     text-align: center;
