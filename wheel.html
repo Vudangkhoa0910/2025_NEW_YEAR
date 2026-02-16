@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧧 Vòng Quay Lì Xì 2026 🐴</title>
+    <title>Vòng Quay Lì Xì 2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧧</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Playball&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/wheel.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="wheel-page">
     <!-- Floating Elements -->
     <div class="floating-elements">
-        <div class="lantern lantern-1">🏮</div>
-        <div class="lantern lantern-2">🏮</div>
-        <div class="lantern lantern-3">🏮</div>
-        <div class="envelope envelope-1">🧧</div>
-        <div class="envelope envelope-2">🧧</div>
+        <div class="lantern lantern-1"><i data-lucide="lamp" class="lucide-icon text-red"></i></div>
+        <div class="lantern lantern-2"><i data-lucide="lamp" class="lucide-icon text-red"></i></div>
+        <div class="lantern lantern-3"><i data-lucide="lamp" class="lucide-icon text-red"></i></div>
+        <div class="envelope envelope-1"><i data-lucide="gift" class="lucide-icon text-gold"></i></div>
+        <div class="envelope envelope-2"><i data-lucide="gift" class="lucide-icon text-gold"></i></div>
     </div>
 
     <!-- Particle Container -->
@@ -32,7 +33,7 @@
             <div class="welcome-card glass-card">
                 <div class="welcome-header">
                     <div class="year-badge-small">2026</div>
-                    <h1>🧧 Lì Xì May Mắn 🧧</h1>
+                    <h1><i data-lucide="gift" class="lucide-icon text-red"></i> Lì Xì May Mắn <i data-lucide="gift" class="lucide-icon text-red"></i></h1>
                 </div>
                 
                 <div class="welcome-message">
@@ -52,7 +53,7 @@
                 </div>
 
                 <button class="btn btn-primary btn-glow btn-large" id="openEnvelope">
-                    <span class="btn-icon">🎊</span>
+                    <span class="btn-icon"><i data-lucide="party-popper" class="lucide-icon"></i></span>
                     <span class="btn-text">Mở Lì Xì</span>
                     <span class="btn-shine"></span>
                 </button>
@@ -62,7 +63,7 @@
         <!-- Wheel Screen -->
         <div class="screen wheel-screen" id="wheelScreen" style="display: none;">
             <div class="wheel-header">
-                <h2>🎰 Quay Để Nhận Lì Xì 🎰</h2>
+                <h2><i data-lucide="disc" class="lucide-icon"></i> Quay Để Nhận Lì Xì <i data-lucide="disc" class="lucide-icon"></i></h2>
                 <p>Nhấn nút để quay vòng quay may mắn!</p>
             </div>
 
@@ -75,12 +76,12 @@
                 </div>
                 <div class="wheel-center" id="spinButton">
                     <span class="spin-text">QUAY</span>
-                    <span class="spin-icon">🎯</span>
+                    <span class="spin-icon"><i data-lucide="target" class="lucide-icon"></i></span>
                 </div>
             </div>
 
             <div class="wheel-info">
-                <p>🍀 Chúc bạn may mắn! 🍀</p>
+                <p><i data-lucide="clover" class="lucide-icon lucide-sm text-green"></i> Chúc bạn may mắn! <i data-lucide="clover" class="lucide-icon lucide-sm text-green"></i></p>
             </div>
         </div>
 
@@ -88,7 +89,7 @@
         <div class="screen result-screen" id="resultScreen" style="display: none;">
             <div class="result-card glass-card">
                 <div class="result-header">
-                    <h2>🎊 Chúc Mừng! 🎊</h2>
+                    <h2><i data-lucide="party-popper" class="lucide-icon"></i> Chúc Mừng! <i data-lucide="party-popper" class="lucide-icon"></i></h2>
                 </div>
                 
                 <div class="result-content">
@@ -102,7 +103,7 @@
                         <span id="receiverResult">Bạn</span> đã nhận được lì xì
                     </p>
                     <p class="result-value">
-                        <span class="currency">💰</span>
+                        <span class="currency"><i data-lucide="banknote" class="lucide-icon text-gold"></i></span>
                         <span id="prizeValue" class="prize-number">0</span>
                         <span class="currency-unit">VNĐ</span>
                     </p>
@@ -114,39 +115,39 @@
                 <!-- QR Upload Form -->
                 <div class="qr-upload-section" id="qrUploadSection">
                     <div class="upload-header">
-                        <h3>📱 Nhận Tiền Qua Chuyển Khoản</h3>
+                        <h3><i data-lucide="smartphone" class="lucide-icon"></i> Nhận Tiền Qua Chuyển Khoản</h3>
                         <p>Upload QR Code ngân hàng của bạn để nhận lì xì</p>
                     </div>
                     
                     <div class="upload-form">
                         <div class="input-group">
-                            <label for="bankName">🏦 Tên ngân hàng</label>
+                            <label for="bankName"><i data-lucide="landmark" class="lucide-icon lucide-sm"></i> Tên ngân hàng</label>
                             <input type="text" id="bankName" placeholder="VD: Vietcombank, MB Bank...">
                         </div>
                         <div class="input-group">
-                            <label for="accountName">👤 Tên chủ tài khoản</label>
+                            <label for="accountName"><i data-lucide="user" class="lucide-icon lucide-sm"></i> Tên chủ tài khoản</label>
                             <input type="text" id="accountName" placeholder="Nhập tên chủ tài khoản...">
                         </div>
                         <div class="input-group">
-                            <label for="accountNumber">💳 Số tài khoản</label>
+                            <label for="accountNumber"><i data-lucide="credit-card" class="lucide-icon lucide-sm"></i> Số tài khoản</label>
                             <input type="text" id="accountNumber" placeholder="Nhập số tài khoản...">
                         </div>
                         
                         <div class="qr-upload-box" id="qrUploadBox">
                             <input type="file" id="qrFileInput" accept="image/*" style="display: none;">
                             <div class="upload-placeholder" id="uploadPlaceholder">
-                                <span class="upload-icon">📷</span>
+                                <span class="upload-icon"><i data-lucide="camera" class="lucide-icon lucide-xl"></i></span>
                                 <p>Nhấn để upload QR Code</p>
                                 <p class="upload-hint">hoặc kéo thả ảnh vào đây</p>
                             </div>
                             <div class="upload-preview" id="uploadPreview" style="display: none;">
                                 <img id="qrPreviewImg" src="" alt="QR Preview">
-                                <button class="btn-remove-qr" onclick="removeQR()">✕</button>
+                                <button class="btn-remove-qr" onclick="removeQR()"><i data-lucide="x" class="lucide-icon lucide-sm"></i></button>
                             </div>
                         </div>
                         
                         <button class="btn btn-primary btn-glow" id="submitQR" onclick="submitBankInfo()">
-                            <span class="btn-icon">✅</span>
+                            <span class="btn-icon"><i data-lucide="check-circle" class="lucide-icon"></i></span>
                             <span class="btn-text">Gửi Thông Tin Nhận Tiền</span>
                         </button>
                     </div>
@@ -154,15 +155,15 @@
 
                 <!-- Success Message (shown after submit) -->
                 <div class="submit-success" id="submitSuccess" style="display: none;">
-                    <div class="success-icon">✅</div>
+                    <div class="success-icon"><i data-lucide="check-circle" class="lucide-icon lucide-xl text-green"></i></div>
                     <h3>Đã Gửi Thành Công!</h3>
                     <p>Thông tin của bạn đã được ghi nhận.</p>
-                    <p>Lì xì sẽ được chuyển trong thời gian sớm nhất! 🎉</p>
+                    <p>Lì xì sẽ được chuyển trong thời gian sớm nhất! <i data-lucide="party-popper" class="lucide-icon lucide-sm"></i></p>
                 </div>
 
                 <div class="result-wishes">
-                    <p>🎆 Chúc Mừng Năm Mới 2026 🎆</p>
-                    <p>Năm Bính Ngọ - An Khang Thịnh Vượng 🐴</p>
+                    <p><i data-lucide="sparkles" class="lucide-icon lucide-sm text-gold"></i> Chúc Mừng Năm Mới 2026 <i data-lucide="sparkles" class="lucide-icon lucide-sm text-gold"></i></p>
+                    <p>Năm Bính Ngọ - An Khang Thịnh Vượng <i data-lucide="star" class="lucide-icon lucide-sm text-gold"></i></p>
                 </div>
 
                 <div class="author-credit">
@@ -174,7 +175,7 @@
         <!-- Already Used Screen -->
         <div class="screen used-screen" id="usedScreen" style="display: none;">
             <div class="used-card glass-card">
-                <div class="used-icon">🚫</div>
+                <div class="used-icon"><i data-lucide="ban" class="lucide-icon lucide-xl text-red"></i></div>
                 <h2>Link Đã Được Sử Dụng!</h2>
                 <p>Rất tiếc, link lì xì này đã được mở trước đó rồi.</p>
                 <p>Mỗi link chỉ được sử dụng 1 lần duy nhất.</p>
@@ -188,7 +189,7 @@
         <!-- Invalid Link Screen -->
         <div class="screen invalid-screen" id="invalidScreen" style="display: none;">
             <div class="invalid-card glass-card">
-                <div class="invalid-icon">❓</div>
+                <div class="invalid-icon"><i data-lucide="help-circle" class="lucide-icon lucide-xl text-orange"></i></div>
                 <h2>Link Không Hợp Lệ!</h2>
                 <p>Link lì xì này không tồn tại hoặc đã hết hạn.</p>
                 
@@ -202,5 +203,11 @@
     <script src="js/particles.js"></script>
     <script src="js/confetti.js"></script>
     <script src="js/wheel.js"></script>
+    <script>
+        // Initialize Lucide icons after page load
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
 </body>
 </html>

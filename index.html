@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧧 Lì Xì Năm Mới 2026 - Năm Bính Ngọ 🐴</title>
+    <title>Lì Xì Năm Mới 2026 - Năm Bính Ngọ</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧧</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Playball&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,20 +14,20 @@
     <div id="loginScreen" class="login-screen">
         <div class="login-card glass-card">
             <div class="login-header">
-                <div class="login-icon">🔐</div>
+                <div class="login-icon"><i data-lucide="lock" class="lucide-icon lucide-xl"></i></div>
                 <h2>Admin Access</h2>
                 <p>Nhập mật khẩu để tiếp tục</p>
             </div>
             <div class="login-form">
                 <div class="input-group">
-                    <label for="adminPassword">🔑 Mật khẩu</label>
+                    <label for="adminPassword"><i data-lucide="key" class="lucide-icon lucide-sm"></i> Mật khẩu</label>
                     <input type="password" id="adminPassword" placeholder="Nhập mật khẩu..." onkeypress="if(event.key==='Enter')checkPassword()">
                 </div>
                 <button class="btn btn-primary btn-glow" onclick="checkPassword()">
-                    <span class="btn-icon">🚀</span>
+                    <span class="btn-icon"><i data-lucide="log-in" class="lucide-icon"></i></span>
                     <span class="btn-text">Đăng Nhập</span>
                 </button>
-                <p class="login-error" id="loginError" style="display: none;">❌ Sai mật khẩu!</p>
+                <p class="login-error" id="loginError" style="display: none;"><i data-lucide="x-circle" class="lucide-icon lucide-sm"></i> Sai mật khẩu!</p>
             </div>
             <div class="author-credit">
                 <p>© 2026 by <strong>Vu Dang Khoa</strong></p>
@@ -38,13 +39,13 @@
     <div id="adminContent" style="display: none;">
     <!-- Floating Elements -->
     <div class="floating-elements">
-        <div class="lantern lantern-1">🏮</div>
-        <div class="lantern lantern-2">🏮</div>
-        <div class="lantern lantern-3">🏮</div>
-        <div class="envelope envelope-1">🧧</div>
-        <div class="envelope envelope-2">🧧</div>
-        <div class="firecracker firecracker-1">🧨</div>
-        <div class="firecracker firecracker-2">🧨</div>
+        <div class="lantern lantern-1"><i data-lucide="flame" class="lucide-icon text-orange"></i></div>
+        <div class="lantern lantern-2"><i data-lucide="flame" class="lucide-icon text-orange"></i></div>
+        <div class="lantern lantern-3"><i data-lucide="flame" class="lucide-icon text-orange"></i></div>
+        <div class="envelope envelope-1"><i data-lucide="gift" class="lucide-icon text-red"></i></div>
+        <div class="envelope envelope-2"><i data-lucide="gift" class="lucide-icon text-red"></i></div>
+        <div class="firecracker firecracker-1"><i data-lucide="sparkles" class="lucide-icon text-gold"></i></div>
+        <div class="firecracker firecracker-2"><i data-lucide="sparkles" class="lucide-icon text-gold"></i></div>
     </div>
 
     <!-- Particle Container -->
@@ -55,10 +56,10 @@
         <header class="header">
             <div class="year-badge">
                 <span class="year">2026</span>
-                <span class="zodiac">🐴 Năm Bính Ngọ</span>
+                <span class="zodiac"><i data-lucide="star" class="lucide-icon lucide-sm"></i> Năm Bính Ngọ</span>
             </div>
             <h1 class="title">
-                <span class="title-line">🧧 Lì Xì May Mắn 🧧</span>
+                <span class="title-line"><i data-lucide="gift" class="lucide-icon"></i> Lì Xì May Mắn <i data-lucide="gift" class="lucide-icon"></i></span>
                 <span class="subtitle">Chúc Mừng Năm Mới</span>
             </h1>
         </header>
@@ -66,52 +67,52 @@
         <main class="main-content">
             <div class="card glass-card">
                 <div class="card-header">
-                    <h2>✨ Tạo Vòng Quay Lì Xì ✨</h2>
+                    <h2><i data-lucide="sparkles" class="lucide-icon text-gold"></i> Tạo Vòng Quay Lì Xì <i data-lucide="sparkles" class="lucide-icon text-gold"></i></h2>
                     <p>Gửi lì xì may mắn đến bạn bè và người thân</p>
                 </div>
 
                 <div class="sender-form">
                     <div class="input-group">
-                        <label for="senderName">👤 Tên người gửi</label>
+                        <label for="senderName"><i data-lucide="user" class="lucide-icon lucide-sm"></i> Tên người gửi</label>
                         <input type="text" id="senderName" placeholder="Nhập tên của bạn..." maxlength="30">
                     </div>
                     <div class="input-group">
-                        <label for="receiverName">💝 Tên người nhận</label>
+                        <label for="receiverName"><i data-lucide="heart" class="lucide-icon lucide-sm"></i> Tên người nhận</label>
                         <input type="text" id="receiverName" placeholder="Nhập tên người nhận..." maxlength="30">
                     </div>
                     <div class="input-group">
-                        <label for="message">💌 Lời chúc (tùy chọn)</label>
+                        <label for="message"><i data-lucide="mail" class="lucide-icon lucide-sm"></i> Lời chúc (tùy chọn)</label>
                         <textarea id="message" placeholder="Nhập lời chúc năm mới..." maxlength="100"></textarea>
                     </div>
                 </div>
 
                 <button class="btn btn-primary btn-glow" id="createLink">
-                    <span class="btn-icon">🎁</span>
+                    <span class="btn-icon"><i data-lucide="gift" class="lucide-icon"></i></span>
                     <span class="btn-text">Tạo Link Lì Xì</span>
                     <span class="btn-shine"></span>
                 </button>
 
                 <div class="link-result" id="linkResult" style="display: none;">
                     <div class="link-header">
-                        <span class="success-icon">✅</span>
+                        <span class="success-icon"><i data-lucide="check-circle" class="lucide-icon text-green"></i></span>
                         <span>Link lì xì đã được tạo!</span>
                     </div>
                     <div class="link-box">
                         <input type="text" id="generatedLink" readonly>
                         <button class="btn btn-copy" id="copyLink">
-                            <span>📋 Sao chép</span>
+                            <span><i data-lucide="copy" class="lucide-icon lucide-sm"></i> Sao chép</span>
                         </button>
                     </div>
-                    <p class="link-note">⚠️ Link này chỉ sử dụng được 1 lần duy nhất!</p>
+                    <p class="link-note"><i data-lucide="alert-triangle" class="lucide-icon lucide-sm"></i> Link này chỉ sử dụng được 1 lần duy nhất!</p>
                     <div class="share-buttons">
                         <button class="btn btn-share btn-facebook" onclick="shareToFacebook()">
-                            <span>📘 Facebook</span>
+                            <span><i data-lucide="facebook" class="lucide-icon lucide-sm"></i> Facebook</span>
                         </button>
                         <button class="btn btn-share btn-zalo" onclick="shareToZalo()">
-                            <span>💬 Zalo</span>
+                            <span><i data-lucide="message-circle" class="lucide-icon lucide-sm"></i> Zalo</span>
                         </button>
                         <button class="btn btn-share btn-messenger" onclick="shareToMessenger()">
-                            <span>💭 Messenger</span>
+                            <span><i data-lucide="send" class="lucide-icon lucide-sm"></i> Messenger</span>
                         </button>
                     </div>
                 </div>
@@ -119,32 +120,32 @@
 
             <div class="features">
                 <div class="feature-item">
-                    <span class="feature-icon">🎰</span>
+                    <span class="feature-icon"><i data-lucide="disc" class="lucide-icon"></i></span>
                     <span class="feature-text">Vòng quay may mắn</span>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">🔒</span>
+                    <span class="feature-icon"><i data-lucide="lock" class="lucide-icon"></i></span>
                     <span class="feature-text">Link dùng 1 lần</span>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">💰</span>
-                    <span class="feature-text">Từ 22K - 111K</span>
+                    <span class="feature-icon"><i data-lucide="banknote" class="lucide-icon"></i></span>
+                    <span class="feature-text">Từ 22K - 168K</span>
                 </div>
             </div>
 
             <!-- Demo Button for Testing -->
             <div class="demo-section">
-                <p class="demo-text">🧪 Muốn thử trước? Xem demo vòng quay:</p>
+                <p class="demo-text"><i data-lucide="test-tube" class="lucide-icon lucide-sm"></i> Muốn thử trước? Xem demo vòng quay:</p>
                 <a href="wheel.html?demo=true" class="btn btn-demo">
-                    <span class="btn-icon">🎮</span>
+                    <span class="btn-icon"><i data-lucide="gamepad-2" class="lucide-icon"></i></span>
                     <span class="btn-text">Xem Demo Vòng Quay</span>
                 </a>
             </div>
         </main>
 
         <footer class="footer">
-            <p>🧧 Chúc Mừng Năm Mới 2026 - Năm Bính Ngọ 🐴</p>
-            <p class="footer-sub">Made with ❤️ for Vietnamese New Year</p>
+            <p><i data-lucide="gift" class="lucide-icon lucide-sm"></i> Chúc Mừng Năm Mới 2026 - Năm Bính Ngọ <i data-lucide="star" class="lucide-icon lucide-sm"></i></p>
+            <p class="footer-sub">Made with <i data-lucide="heart" class="lucide-icon lucide-sm text-red"></i> for Vietnamese New Year</p>
             <p class="author-credit">© 2026 by <strong>Vu Dang Khoa</strong></p>
         </footer>
     </div>
@@ -152,7 +153,7 @@
 
     <!-- Toast Notification -->
     <div class="toast" id="toast">
-        <span class="toast-icon">✅</span>
+        <span class="toast-icon"><i data-lucide="check-circle" class="lucide-icon"></i></span>
         <span class="toast-message">Đã sao chép link!</span>
     </div>
 
@@ -178,12 +179,16 @@
     function showAdminContent() {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('adminContent').style.display = 'block';
+        lucide.createIcons();
     }
     
     // Check if already logged in this session
     if (sessionStorage.getItem(ADMIN_KEY) === 'true') {
         showAdminContent();
     }
+    
+    // Initialize Lucide icons
+    lucide.createIcons();
     </script>
 
     <script src="js/particles.js"></script>

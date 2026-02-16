@@ -21,6 +21,50 @@
     --shadow-red: 0 0 30px rgba(211, 47, 47, 0.5);
 }
 
+/* Lucide Icons Styling */
+.lucide-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    display: inline-block;
+}
+
+.lucide-xl {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.lucide-lg {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.lucide-sm {
+    width: 0.875em;
+    height: 0.875em;
+}
+
+.text-gold {
+    color: var(--gold);
+}
+
+.text-red {
+    color: var(--primary-red);
+}
+
+.text-green {
+    color: #4caf50;
+}
+
+.text-orange {
+    color: #ff9800;
+}
+
 /* Reset & Base */
 * {
     margin: 0;
