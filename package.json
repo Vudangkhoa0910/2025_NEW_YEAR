@@ -1,0 +1,19 @@
+{
+  "name": "lixi-2026",
+  "version": "1.0.0",
+  "description": "🧧 Vòng Quay Lì Xì Năm Mới 2026 - Năm Bính Ngọ",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000"
+  },
+  "keywords": [
+    "lixi",
+    "lucky-money",
+    "vietnamese-new-year",
+    "2026",
+    "spinning-wheel"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

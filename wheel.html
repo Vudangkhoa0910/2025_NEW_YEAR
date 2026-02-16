@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧧 Vòng Quay Lì Xì 2026 🐴</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧧</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Playball&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wheel.css">
+</head>
+<body class="wheel-page">
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="lantern lantern-1">🏮</div>
+        <div class="lantern lantern-2">🏮</div>
+        <div class="lantern lantern-3">🏮</div>
+        <div class="envelope envelope-1">🧧</div>
+        <div class="envelope envelope-2">🧧</div>
+    </div>
+
+    <!-- Particle Container -->
+    <div id="particles"></div>
+    
+    <!-- Confetti Container -->
+    <div id="confetti"></div>
+
+    <!-- Main Content -->
+    <div class="container wheel-container">
+        <!-- Welcome Screen -->
+        <div class="screen welcome-screen" id="welcomeScreen">
+            <div class="welcome-card glass-card">
+                <div class="welcome-header">
+                    <div class="year-badge-small">2026</div>
+                    <h1>🧧 Lì Xì May Mắn 🧧</h1>
+                </div>
+                
+                <div class="welcome-message">
+                    <p class="greeting">Xin chào, <span id="receiverDisplay" class="highlight-name">Bạn</span>!</p>
+                    <p class="from-text">Bạn nhận được lì xì từ <span id="senderDisplay" class="highlight-name">Người gửi</span></p>
+                    <div class="custom-message" id="customMessage"></div>
+                </div>
+
+                <div class="envelope-animation">
+                    <div class="red-envelope" id="redEnvelope">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-body">
+                            <div class="gold-circle">福</div>
+                        </div>
+                        <div class="envelope-shine"></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-glow btn-large" id="openEnvelope">
+                    <span class="btn-icon">🎊</span>
+                    <span class="btn-text">Mở Lì Xì</span>
+                    <span class="btn-shine"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Wheel Screen -->
+        <div class="screen wheel-screen" id="wheelScreen" style="display: none;">
+            <div class="wheel-header">
+                <h2>🎰 Quay Để Nhận Lì Xì 🎰</h2>
+                <p>Nhấn nút để quay vòng quay may mắn!</p>
+            </div>
+
+            <div class="wheel-wrapper">
+                <div class="wheel-pointer">▼</div>
+                <div class="wheel-outer-ring">
+                    <div class="wheel-inner-ring">
+                        <canvas id="wheelCanvas" width="400" height="400"></canvas>
+                    </div>
+                </div>
+                <div class="wheel-center" id="spinButton">
+                    <span class="spin-text">QUAY</span>
+                    <span class="spin-icon">🎯</span>
+                </div>
+            </div>
+
+            <div class="wheel-info">
+                <p>🍀 Chúc bạn may mắn! 🍀</p>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div class="screen result-screen" id="resultScreen" style="display: none;">
+            <div class="result-card glass-card">
+                <div class="result-header">
+                    <h2>🎊 Chúc Mừng! 🎊</h2>
+                </div>
+                
+                <div class="result-content">
+                    <div class="prize-display">
+                        <div class="prize-envelope">
+                            <div class="prize-amount" id="prizeAmount">0K</div>
+                        </div>
+                    </div>
+                    
+                    <p class="result-message">
+                        <span id="receiverResult">Bạn</span> đã nhận được lì xì
+                    </p>
+                    <p class="result-value">
+                        <span class="currency">💰</span>
+                        <span id="prizeValue" class="prize-number">0</span>
+                        <span class="currency-unit">VNĐ</span>
+                    </p>
+                    <p class="result-from">
+                        Từ: <span id="senderResult">Người gửi</span>
+                    </p>
+                </div>
+
+                <div class="result-wishes">
+                    <p>🎆 Chúc Mừng Năm Mới 2026 🎆</p>
+                    <p>Năm Bính Ngọ - An Khang Thịnh Vượng 🐴</p>
+                </div>
+
+                <div class="result-actions" id="resultActions" style="display: none;">
+                    <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                        <span>🎁 Gửi Lì Xì Cho Bạn Bè</span>
+                    </button>
+                </div>
+
+                <div class="author-credit">
+                    <p>© 2026 by <strong>Vu Dang Khoa</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Already Used Screen -->
+        <div class="screen used-screen" id="usedScreen" style="display: none;">
+            <div class="used-card glass-card">
+                <div class="used-icon">🚫</div>
+                <h2>Link Đã Được Sử Dụng!</h2>
+                <p>Rất tiếc, link lì xì này đã được mở trước đó rồi.</p>
+                <p>Mỗi link chỉ được sử dụng 1 lần duy nhất.</p>
+                
+                <div class="used-actions">
+                    <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                        <span>🧧 Tạo Lì Xì Mới</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invalid Link Screen -->
+        <div class="screen invalid-screen" id="invalidScreen" style="display: none;">
+            <div class="invalid-card glass-card">
+                <div class="invalid-icon">❓</div>
+                <h2>Link Không Hợp Lệ!</h2>
+                <p>Link lì xì này không tồn tại hoặc đã hết hạn.</p>
+                
+                <div class="invalid-actions">
+                    <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                        <span>🧧 Tạo Lì Xì Mới</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/confetti.js"></script>
+    <script src="js/wheel.js"></script>
+</body>
+</html>
