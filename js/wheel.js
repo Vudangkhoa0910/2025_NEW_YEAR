@@ -10,10 +10,10 @@ const PRIZES = [
     { value: 1000,  label: '1K',  color: '#FF6B6B' },
     { value: 2000,  label: '2K',  color: '#4ECDC4' },
     { value: 5000,  label: '5K',  color: '#45B7D1' },
-    { value: 10000, label: '10K', color: '#96CEB4' },
-    { value: 20000, label: '20K', color: '#FFEAA7' },
-    { value: 30000, label: '30K', color: '#DDA0DD' },
-    { value: 50000, label: '50K', color: '#FFD700' },
+    { value: 10000, label: '11K', color: '#96CEB4' },
+    { value: 20000, label: '22K', color: '#FFEAA7' },
+    { value: 30000, label: '33K', color: '#DDA0DD' },
+    { value: 50000, label: '55K', color: '#FFD700' },
     { value: 66000, label: '66K', color: '#FF8A65' }
 ];
 
