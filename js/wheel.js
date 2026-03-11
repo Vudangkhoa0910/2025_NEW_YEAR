@@ -7,17 +7,14 @@ const API_BASE = '/.netlify/functions/api';
 
 // Prize segments
 const PRIZES = [
-    { value: 22000, label: '22K', color: '#FF6B6B' },
-    { value: 55000, label: '55K', color: '#4ECDC4' },
-    { value: 66000, label: '66K', color: '#45B7D1' },
-    { value: 77000, label: '77K', color: '#96CEB4' },
-    { value: 88000, label: '88K', color: '#FFEAA7' },
-    { value: 99000, label: '99K', color: '#DDA0DD' },
-    { value: 111000, label: '111K', color: '#FFD700' },
-    { value: 138000, label: '138K', color: '#FF8A65' },
-    { value: 168000, label: '168K', color: '#E91E63' },
-    { value: 186000, label: '186K', color: '#9C27B0' },
-    { value: 196000, label: '196K', color: '#00BCD4' }
+    { value: 1000,  label: '1K',  color: '#FF6B6B' },
+    { value: 2000,  label: '2K',  color: '#4ECDC4' },
+    { value: 5000,  label: '5K',  color: '#45B7D1' },
+    { value: 10000, label: '10K', color: '#96CEB4' },
+    { value: 20000, label: '20K', color: '#FFEAA7' },
+    { value: 30000, label: '30K', color: '#DDA0DD' },
+    { value: 50000, label: '50K', color: '#FFD700' },
+    { value: 66000, label: '66K', color: '#FF8A65' }
 ];
 
 const STORAGE_KEY = 'lixi2026_links';
